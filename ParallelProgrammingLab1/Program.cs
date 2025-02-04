@@ -10,9 +10,11 @@ internal static class Program
     {
         try
         {
-            var outputFile = new StreamWriter("../../../Output.txt", false);
+            Console.Write("Enter path to output file: ");
+            var outputFile = new StreamWriter(Console.ReadLine()!, false);
             
-            var threadScheduler = ParseInputData("../../../Input.json", outputFile);
+            Console.Write("Enter path to input file: ");
+            var threadScheduler = ParseInputData(Console.ReadLine()!, outputFile);
             
             outputFile.WriteLine("\nАлфавит потоков:");
             MyThread.PrintAlphabet(outputFile);
@@ -33,7 +35,7 @@ internal static class Program
 
             threadScheduler.Dispose();
             
-            Console.Write("Нажмите любую клавишу для завершения программы...");
+            Console.Write($"{Environment.NewLine}Нажмите любую клавишу для завершения программы...");
             Console.ReadKey();
 
             return 0;
