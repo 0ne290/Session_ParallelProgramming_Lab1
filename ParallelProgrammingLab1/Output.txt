@@ -1,0 +1,64 @@
+Pa: SJF, nonpreemptive
+Qt: 300
+MaxT: 10
+MaxP: 5
+Nr: 2
+Np: 7
+
+Ресурсы:
+	Название: R1; пропускная способность: 1
+	Название: R2; пропускная способность: 1
+
+Потоки:
+	Название: T1; приоритет: 3; время работы в квантах: 3; сколько раз выполнить: 2; названия требуемых ресурсов: R1, R2, R1
+	Название: T2; приоритет: 3; время работы в квантах: 2; сколько раз выполнить: 1; названия требуемых ресурсов: R1, R2, R1
+	Название: T3; приоритет: 1; время работы в квантах: 2; сколько раз выполнить: 1; названия требуемых ресурсов: R2
+	Название: T4; приоритет: 2; время работы в квантах: 5; сколько раз выполнить: 1; названия требуемых ресурсов: R1, R2
+	Название: T5; приоритет: 1; время работы в квантах: 3; сколько раз выполнить: 1; названия требуемых ресурсов: R2, R1
+	Название: T6; приоритет: 1; время работы в квантах: 2; сколько раз выполнить: 1; названия требуемых ресурсов: R1
+	Название: T7; приоритет: 1; время работы в квантах: 4; сколько раз выполнить: 1; названия требуемых ресурсов: R2, R1
+
+Алфавит потоков:
+	aT1 = {InQueue R2, Running R2, InQueue R1, Running R1, Completed}
+	aT2 = {InQueue R2, Running R2, InQueue R1, Running R1, Completed}
+	aT3 = {InQueue R2, Running R2, Completed}
+	aT4 = {InQueue R1, Running R1, InQueue R2, Running R2, Completed}
+	aT5 = {InQueue R2, Running R2, InQueue R1, Running R1, Completed}
+	aT6 = {InQueue R1, Running R1, Completed}
+	aT7 = {InQueue R2, Running R2, InQueue R1, Running R1, Completed}
+
+Префиксная форма потоков:
+	T1:
+		T1 = ((InQueue R1 -> T1) | Running R1 -> Running R1 -> Running R1 -> T1')
+		T1' = ((InQueue R2 -> T1') | Running R2 -> Running R2 -> Running R2 -> T1'')
+		T1'' = ((InQueue R1 -> T1'') | Running R1 -> Running R1 -> Running R1 -> Completed)
+	T2:
+		T2 = ((InQueue R1 -> T2) | Running R1 -> Running R1 -> T2')
+		T2' = ((InQueue R2 -> T2') | Running R2 -> Running R2 -> T2'')
+		T2'' = ((InQueue R1 -> T2'') | Running R1 -> Running R1 -> Completed)
+	T3:
+		T3 = ((InQueue R2 -> T3) | Running R2 -> Running R2 -> Completed)
+	T4:
+		T4 = ((InQueue R1 -> T4) | Running R1 -> Running R1 -> Running R1 -> Running R1 -> Running R1 -> T4')
+		T4' = ((InQueue R2 -> T4') | Running R2 -> Running R2 -> Running R2 -> Running R2 -> Running R2 -> Completed)
+	T5:
+		T5 = ((InQueue R2 -> T5) | Running R2 -> Running R2 -> Running R2 -> T5')
+		T5' = ((InQueue R1 -> T5') | Running R1 -> Running R1 -> Running R1 -> Completed)
+	T6:
+		T6 = ((InQueue R1 -> T6) | Running R1 -> Running R1 -> Completed)
+	T7:
+		T7 = ((InQueue R2 -> T7) | Running R2 -> Running R2 -> Running R2 -> Running R2 -> T7')
+		T7' = ((InQueue R1 -> T7') | Running R1 -> Running R1 -> Running R1 -> Running R1 -> Completed)
+
+Параллельная композиция: T1 || T2 || T3 || T4 || T5 || T6 || T7
+
+Общее время работы системы: 10185 мс.
+
+Протоколы потоков:
+	T1: <InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, Running R1, Running R1, Running R1, InQueue R2, InQueue R2, Running R2, Running R2, Running R2, InQueue R1, InQueue R1, Running R1, Running R1, Running R1, Running R1, Running R1, Running R1, Running R2, Running R2, Running R2, InQueue R1, InQueue R1, Running R1, Running R1, Running R1, Completed>
+	T2: <Running R1, Running R1, Running R2, Running R2, Running R1, Running R1, Completed>
+	T3: <Running R2, Running R2, Completed>
+	T4: <InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, InQueue R1, Running R1, Running R1, Running R1, Running R1, Running R1, Running R2, Running R2, Running R2, Running R2, Running R2, Completed>
+	T5: <InQueue R2, InQueue R2, InQueue R2, InQueue R2, Running R2, Running R2, Running R2, InQueue R1, InQueue R1, Running R1, Running R1, Running R1, Completed>
+	T6: <InQueue R1, InQueue R1, Running R1, Running R1, Completed>
+	T7: <InQueue R2, InQueue R2, InQueue R2, InQueue R2, InQueue R2, InQueue R2, InQueue R2, Running R2, Running R2, Running R2, Running R2, InQueue R1, Running R1, Running R1, Running R1, Running R1, Completed>

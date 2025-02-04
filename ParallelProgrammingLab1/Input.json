@@ -1,0 +1,90 @@
+{
+	"Pa": false,
+	"Qt": 300,
+	"MaxT": 10,
+	"MaxP": 5,
+	"Nr": 2,
+	"Np": 6,
+	"Resources": [
+		{
+			"Name": "R1",
+			"Capacity": 1
+		},
+		{
+			"Name": "R2",
+			"Capacity": 1
+		}
+	],
+	"Threads": [
+		{
+			"Name": "T1",
+			"Priority": 3,
+			"CpuBurst": 3,
+			"Quantity": 1,
+			"ResourceNames": [
+				"R1",
+				"R2",
+				"R1"
+			]
+		},
+		{
+			"Name": "T2",
+			"Priority": 3,
+			"CpuBurst": 2,
+			"Quantity": 1,
+			"ResourceNames": [
+				"R1",
+				"R2",
+				"R1"
+			]
+		},
+		{
+			"Name": "T3",
+			"Priority": 1,
+			"CpuBurst": 2,
+			"Quantity": 1,
+			"ResourceNames": [
+				"R2"
+			]
+		},
+		{
+			"Name": "T4",
+			"Priority": 2,
+			"CpuBurst": 5,
+			"Quantity": 1,
+			"ResourceNames": [
+				"R1",
+				"R2"
+			]
+		},
+		{
+			"Name": "T5",
+			"Priority": 1,
+			"CpuBurst": 3,
+			"Quantity": 1,
+			"ResourceNames": [
+				"R2",
+				"R1"
+			]
+		},
+		{
+			"Name": "T6",
+			"Priority": 1,
+			"CpuBurst": 2,
+			"Quantity": 1,
+			"ResourceNames": [
+				"R1"
+			]
+		},
+		{
+			"Name": "T7",
+			"Priority": 1,
+			"CpuBurst": 4,
+			"Quantity": 1,
+			"ResourceNames": [
+				"R2",
+				"R1"
+			]
+		}
+	]
+}
